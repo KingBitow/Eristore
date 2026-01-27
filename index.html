@@ -1,52 +1,383 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Open App</title>
-	<script language="javascript">
-		var QueryString = function () {
-		  var query_string = {};
-		  var query = window.location.search.substring(1);
-		  var vars = query.split("&");
-		  for (var i=0;i<vars.length;i++) {
-		    var pair = vars[i].split("=");
-		    if (typeof query_string[pair[0]] === "undefined") {
-		      query_string[pair[0]] = pair[1];
-		    } else if (typeof query_string[pair[0]] === "string") {
-		      var arr = [ query_string[pair[0]], pair[1] ];
-		      query_string[pair[0]] = arr;
-		    } else {
-		      query_string[pair[0]].push(pair[1]);
-		    }
-		  }
-		    return query_string;
-		} ();
-	    function open_store() {
-	    	console.log("Timeout. Open fallback url: " + QueryString.storeURL) ;	    	
-	    	document.location.href = QueryString.storeURL ;	    	 
-	    }
-	    
-	    var timeout;
-	    function open_store_timeout() {
-	        timeout = setTimeout('open_store()', 400);
-	    }
-	    function open_app() {
-	    	var customSchemeURL = QueryString.customSchemeURL ;	 
-	    	var customParams = "" ;
-	    	var separador = "" ;
-	    	for (var key in QueryString) {
-	    		if (["customSchemeURL", "storeURL"].indexOf(key) < 0) {
-	    			customParams += separador + key + "=" + QueryString[key] ;
-	    			separador = "&" ;
-	    		}
-	    	}   	
-	    	var appURL = QueryString.customSchemeURL + "?" + customParams ;
-	    	document.location.href = appURL ;		
-	    	console.log("Opening URL: " + appURL) ;
-	    	open_store_timeout() ;
-	    }
-	</script>	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tigrina AI | Future Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-glow: #00d4ff;
+            --accent-orange: #FF6E4A;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --dark-bg: #0a0b10;
+            --text-white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            background: radial-gradient(circle at top right, #1a1c2c, var(--dark-bg));
+            color: var(--text-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 50px;
+        }
+
+        /* --- Header --- */
+        header {
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 11, 16, 0.8);
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #fff, var(--primary-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Main Featured App Card --- */
+        .app-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px 20px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle glow animation behind the card */
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .hero-section {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .app-icon {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0055ff 100%);
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .app-meta h1 { font-size: 36px; margin: 0 0 5px 0; }
+
+        .trusted-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(39, 174, 96, 0.2);
+            color: #2ecc71;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* Stats Strip */
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .stat-box { text-align: center; flex: 1; }
+        .stat-value { display: block; font-size: 20px; font-weight: 700; }
+        .stat-label { font-size: 12px; color: #888; text-transform: uppercase; }
+
+        /* Main Download Button */
+        .download-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: linear-gradient(90deg, #FF6E4A 0%, #FF4500 100%);
+            color: white;
+            text-decoration: none;
+            padding: 22px;
+            border-radius: 18px;
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(255, 110, 74, 0.3);
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .download-trigger:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 110, 74, 0.5);
+        }
+
+        /* --- More Apps Section --- */
+        .more-apps-container {
+            max-width: 900px;
+            width: 90%;
+            margin-top: 20px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 15px;
+        }
+
+        /* Grid Layout for 10 Apps */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+        }
+
+        /* Mini App Card */
+        .mini-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .mini-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            border-color: var(--primary-glow);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.1);
+        }
+
+        .mini-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        /* Individual Gradients for icons */
+        .g-1 { background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%); }
+        .g-2 { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+        .g-3 { background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); }
+        .g-4 { background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%); }
+        .g-5 { background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); }
+        .g-6 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .g-7 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .g-8 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .g-9 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .g-10 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+
+        .mini-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .mini-cat {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .mini-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary-glow);
+            border: 1px solid var(--primary-glow);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .mini-btn:hover {
+            background: var(--primary-glow);
+            color: #000;
+        }
+
+        @media (max-width: 600px) {
+            .hero-section { flex-direction: column; text-align: center; }
+            .stats-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+            .apps-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
 </head>
-<body onLoad="open_app()" style="background: #00A4E6">
+<body>
+
+    <header>
+        <div class="logo-text">TIGRINA AI</div>
+    </header>
+
+    <div class="app-card">
+        <div class="hero-section">
+            <div class="app-icon">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="app-meta">
+                <h1>Tigrina AI</h1>
+                <p style="color: #888; margin: 0;">Tigrina Global Systems</p>
+                <div class="trusted-badge">
+                    <i class="fas fa-shield-alt"></i> Trusted & Verified
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-box">
+                <span class="stat-value">500k+</span>
+                <span class="stat-label">Downloads</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-value">4.9 <i class="fas fa-star" style="color: gold;"></i></span>
+                <span class="stat-label">Rating</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-value">8.2MB</span>
+                <span class="stat-label">Size</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-value">v2.4</span>
+                <span class="stat-label">Version</span>
+            </div>
+        </div>
+
+        <a href="#" class="download-trigger">
+            <i class="fas fa-download"></i>
+            <span>Download APK</span>
+        </a>
+    </div>
+
+    <div class="more-apps-container">
+        <div class="section-title">Similar Applications</div>
+        
+        <div class="apps-grid">
+            
+            <div class="mini-card">
+                <div class="mini-icon g-1"><i class="fas fa-camera"></i></div>
+                <span class="mini-name">App 1</span>
+                <span class="mini-cat">Photography</span>
+                <a href="#" class="mini-btn">Get</a>
+            </div>
+
+            <div class="mini-card">
+                <div class="mini-icon g-2"><i class="fas fa-gamepad"></i></div>
+                <span class="mini-name">App 2</span>
+                <span class="mini-cat">Games</span>
+                <a href="#" class="mini-btn">Get</a>
+            </div>
+
+            <div class="mini-card">
+                <div class="mini-icon g-3"><i class="fas fa-music"></i></div>
+                <span class="mini-name">App 3</span>
+                <span class="mini-cat">Music</span>
+                <a href="#" class="mini-btn">Get</a>
+            </div>
+
+            <div class="mini-card">
+                <div class="mini-icon g-4"><i class="fas fa-comments"></i></div>
+                <span class="mini-name">App 4</span>
+                <span class="mini-cat">Social</span>
+                <a href="#" class="mini-btn">Get</a>
+            </div>
+
+            <div class="mini-card">
+                <div class="mini-icon g-5"><i class="fas fa-shield-virus"></i></div>
+                <span class="mini-name">App 5</span>
+                <span class="mini-cat">Security</span>
+                <a href="#" class="mini-btn">Get</a>
+            </div>
+
+            <div class="mini-card">
+                <div class="mini-icon g-6"><i class="fas fa-tv"></i></div>
+                <span class="mini-name">App 6</span>
+                <span class="mini-cat">Entertainment</span>
+                <a href="#" class="mini-btn">Get</a>
+            </div>
+
+            <div class="mini-card">
+                <div class="mini-icon g-7"><i class="fas fa-wallet"></i></div>
+                <span class="mini-name">App 7</span>
+                <span class="mini-cat">Finance</span>
+                <a href="#" class="mini-btn">Get</a>
+            </div>
+
+            <div class="mini-card">
+                <div class="mini-icon g-8"><i class="fas fa-running"></i></div>
+                <span class="mini-name">App 8</span>
+                <span class="mini-cat">Health</span>
+                <a href="#" class="mini-btn">Get</a>
+            </div>
+
+            <div class="mini-card">
+                <div class="mini-icon g-9"><i class="fas fa-book"></i></div>
+                <span class="mini-name">App 9</span>
+                <span class="mini-cat">Education</span>
+                <a href="#" class="mini-btn">Get</a>
+            </div>
+
+            <div class="mini-card">
+                <div class="mini-icon g-10"><i class="fas fa-rocket"></i></div>
+                <span class="mini-name">App 10</span>
+                <span class="mini-cat">Productivity</span>
+                <a href="#" class="mini-btn">Get</a>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>
