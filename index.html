@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tigrina AI | Future Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -24,24 +24,25 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-bottom: 50px;
+            padding-bottom: 30px;
+            overflow-x: hidden;
         }
 
         /* --- Header --- */
         header {
             width: 100%;
-            padding: 20px 0;
+            padding: 15px 0;
             text-align: center;
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--glass-border);
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(10, 11, 16, 0.8);
+            background: rgba(10, 11, 16, 0.9);
         }
 
         .logo-text {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 800;
             letter-spacing: 2px;
             background: linear-gradient(to right, #fff, var(--primary-glow));
@@ -54,205 +55,164 @@
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 30px;
-            padding: 40px;
-            margin: 40px 20px;
-            max-width: 800px;
-            width: 90%;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            border-radius: 24px;
+            padding: 25px;
+            margin: 20px auto;
+            width: 85%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             position: relative;
             overflow: hidden;
         }
 
-        /* Subtle glow animation behind the card */
-        .app-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
-            z-index: -1;
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
         .hero-section {
             display: flex;
-            gap: 30px;
+            flex-direction: column;
             align-items: center;
-            margin-bottom: 40px;
+            gap: 15px;
+            margin-bottom: 25px;
+            text-align: center;
         }
 
         .app-icon {
-            width: 140px;
-            height: 140px;
+            width: 100px; /* Adjusted for mobile */
+            height: 100px;
             background: linear-gradient(135deg, #00d4ff 0%, #0055ff 100%);
-            border-radius: 32px;
+            border-radius: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 60px;
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            font-size: 45px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
         }
 
-        .app-meta h1 { font-size: 36px; margin: 0 0 5px 0; }
+        .app-meta h1 { 
+            font-size: 28px; 
+            margin: 5px 0; 
+        }
 
         .trusted-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             background: rgba(39, 174, 96, 0.2);
             color: #2ecc71;
-            padding: 5px 15px;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 14px;
-            margin-top: 10px;
+            font-size: 12px;
+            margin-top: 5px;
         }
 
-        /* Stats Strip */
+        /* Stats Strip - Grid for Mobile */
         .stats-container {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
             border-top: 1px solid var(--glass-border);
             border-bottom: 1px solid var(--glass-border);
-            padding: 20px 0;
-            margin-bottom: 40px;
+            padding: 15px 0;
+            margin-bottom: 25px;
         }
 
-        .stat-box { text-align: center; flex: 1; }
-        .stat-value { display: block; font-size: 20px; font-weight: 700; }
-        .stat-label { font-size: 12px; color: #888; text-transform: uppercase; }
+        .stat-box { text-align: center; }
+        .stat-value { display: block; font-size: 18px; font-weight: 700; }
+        .stat-label { font-size: 10px; color: #888; text-transform: uppercase; }
 
-        /* Main Download Button */
         .download-trigger {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             background: linear-gradient(90deg, #FF6E4A 0%, #FF4500 100%);
             color: white;
             text-decoration: none;
-            padding: 22px;
-            border-radius: 18px;
-            font-size: 20px;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 16px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(255, 110, 74, 0.3);
-            border: none;
+            transition: transform 0.2s;
             width: 100%;
-            cursor: pointer;
-        }
-
-        .download-trigger:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 30px rgba(255, 110, 74, 0.5);
+            box-sizing: border-box;
         }
 
         /* --- More Apps Section --- */
         .more-apps-container {
-            max-width: 900px;
             width: 90%;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .section-title {
-            font-size: 22px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary-glow);
-            padding-left: 15px;
+            font-size: 18px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--primary-glow);
+            padding-left: 12px;
+            font-weight: 600;
         }
 
-        /* Grid Layout for 10 Apps */
+        /* Grid Layout: 2 Columns on Mobile */
         .apps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
         }
 
-        /* Mini App Card */
         .mini-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
-            padding: 20px;
+            padding: 15px 10px;
             text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .mini-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-5px);
-            border-color: var(--primary-glow);
-            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.1);
         }
 
         .mini-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 14px;
-            margin: 0 auto 15px auto;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            margin: 0 auto 10px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
             color: white;
         }
 
-        /* Individual Gradients for icons */
-        .g-1 { background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%); }
-        .g-2 { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
-        .g-3 { background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); }
-        .g-4 { background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%); }
-        .g-5 { background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); }
-        .g-6 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-        .g-7 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-        .g-8 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
-        .g-9 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
-        .g-10 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        /* Gradients */
+        .g-1 { background: linear-gradient(135deg, #FF9A9E, #FECFEF); }
+        .g-2 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        .g-3 { background: linear-gradient(135deg, #84fab0, #8fd3f4); }
+        .g-4 { background: linear-gradient(135deg, #fccb90, #d57eeb); }
+        .g-5 { background: linear-gradient(135deg, #e0c3fc, #8ec5fc); }
+        .g-6 { background: linear-gradient(135deg, #f093fb, #f5576c); }
 
         .mini-name {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 5px;
             display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .mini-cat {
-            font-size: 12px;
+            font-size: 11px;
             color: #888;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             display: block;
         }
 
         .mini-btn {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 212, 255, 0.1);
             color: var(--primary-glow);
             border: 1px solid var(--primary-glow);
-            padding: 8px 15px;
+            padding: 6px 0;
             border-radius: 8px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
-        }
-
-        .mini-btn:hover {
-            background: var(--primary-glow);
-            color: #000;
-        }
-
-        @media (max-width: 600px) {
-            .hero-section { flex-direction: column; text-align: center; }
-            .stats-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-            .apps-grid { grid-template-columns: 1fr 1fr; }
+            display: block;
+            width: 80%;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -269,7 +229,7 @@
             </div>
             <div class="app-meta">
                 <h1>Tigrina AI</h1>
-                <p style="color: #888; margin: 0;">Tigrina Global Systems</p>
+                <p style="color: #888; margin: 0; font-size: 14px;">Tigrina Global Systems</p>
                 <div class="trusted-badge">
                     <i class="fas fa-shield-alt"></i> Trusted & Verified
                 </div>
@@ -282,7 +242,7 @@
                 <span class="stat-label">Downloads</span>
             </div>
             <div class="stat-box">
-                <span class="stat-value">4.9 <i class="fas fa-star" style="color: gold;"></i></span>
+                <span class="stat-value">4.9 <i class="fas fa-star" style="color: gold; font-size: 12px;"></i></span>
                 <span class="stat-label">Rating</span>
             </div>
             <div class="stat-box">
@@ -305,77 +265,47 @@
         <div class="section-title">Similar Applications</div>
         
         <div class="apps-grid">
-            
             <div class="mini-card">
                 <div class="mini-icon g-1"><i class="fas fa-camera"></i></div>
-                <span class="mini-name">App 1</span>
+                <span class="mini-name">Lens Pro</span>
                 <span class="mini-cat">Photography</span>
-                <a href="#" class="mini-btn">Get</a>
+                <a href="#" class="mini-btn">GET</a>
             </div>
 
             <div class="mini-card">
                 <div class="mini-icon g-2"><i class="fas fa-gamepad"></i></div>
-                <span class="mini-name">App 2</span>
+                <span class="mini-name">Cyber Run</span>
                 <span class="mini-cat">Games</span>
-                <a href="#" class="mini-btn">Get</a>
+                <a href="#" class="mini-btn">GET</a>
             </div>
 
             <div class="mini-card">
                 <div class="mini-icon g-3"><i class="fas fa-music"></i></div>
-                <span class="mini-name">App 3</span>
+                <span class="mini-name">Beats</span>
                 <span class="mini-cat">Music</span>
-                <a href="#" class="mini-btn">Get</a>
+                <a href="#" class="mini-btn">GET</a>
             </div>
 
             <div class="mini-card">
                 <div class="mini-icon g-4"><i class="fas fa-comments"></i></div>
-                <span class="mini-name">App 4</span>
+                <span class="mini-name">Chatty</span>
                 <span class="mini-cat">Social</span>
-                <a href="#" class="mini-btn">Get</a>
+                <a href="#" class="mini-btn">GET</a>
             </div>
-
+            
             <div class="mini-card">
                 <div class="mini-icon g-5"><i class="fas fa-shield-virus"></i></div>
-                <span class="mini-name">App 5</span>
+                <span class="mini-name">Guard AI</span>
                 <span class="mini-cat">Security</span>
-                <a href="#" class="mini-btn">Get</a>
+                <a href="#" class="mini-btn">GET</a>
             </div>
 
             <div class="mini-card">
                 <div class="mini-icon g-6"><i class="fas fa-tv"></i></div>
-                <span class="mini-name">App 6</span>
+                <span class="mini-name">Stream</span>
                 <span class="mini-cat">Entertainment</span>
-                <a href="#" class="mini-btn">Get</a>
+                <a href="#" class="mini-btn">GET</a>
             </div>
-
-            <div class="mini-card">
-                <div class="mini-icon g-7"><i class="fas fa-wallet"></i></div>
-                <span class="mini-name">App 7</span>
-                <span class="mini-cat">Finance</span>
-                <a href="#" class="mini-btn">Get</a>
-            </div>
-
-            <div class="mini-card">
-                <div class="mini-icon g-8"><i class="fas fa-running"></i></div>
-                <span class="mini-name">App 8</span>
-                <span class="mini-cat">Health</span>
-                <a href="#" class="mini-btn">Get</a>
-            </div>
-
-            <div class="mini-card">
-                <div class="mini-icon g-9"><i class="fas fa-book"></i></div>
-                <span class="mini-name">App 9</span>
-                <span class="mini-cat">Education</span>
-                <a href="#" class="mini-btn">Get</a>
-            </div>
-
-            <div class="mini-card">
-                <div class="mini-icon g-10"><i class="fas fa-rocket"></i></div>
-                <span class="mini-name">App 10</span>
-                <span class="mini-cat">Productivity</span>
-                <a href="#" class="mini-btn">Get</a>
-            </div>
-
         </div>
     </div>
 
