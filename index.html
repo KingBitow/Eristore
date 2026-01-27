@@ -1,313 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Tigrina AI | Future Store</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-glow: #00d4ff;
-            --accent-orange: #FF6E4A;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --dark-bg: #0a0b10;
-            --text-white: #ffffff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Tigrina AI | Future Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            margin: 0;
-            background: radial-gradient(circle at top right, #1a1c2c, var(--dark-bg));
-            color: var(--text-white);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-bottom: 30px;
-            overflow-x: hidden;
-        }
+  <style>
+    :root {
+      --primary-glow: #00d4ff;
+      --accent-orange: #FF6E4A;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --dark-bg: #0a0b10;
+      --text-white: #ffffff;
+    }
 
-        /* --- Header --- */
-        header {
-            width: 100%;
-            padding: 15px 0;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(10, 11, 16, 0.9);
-        }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      margin: 0;
+      background: radial-gradient(circle at top right, #1a1c2c, var(--dark-bg));
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 30px;
+      overflow-x: hidden;
+    }
 
-        .logo-text {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            background: linear-gradient(to right, #fff, var(--primary-glow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    /* --- Header --- */
+    header {
+      width: 100%;
+      padding: 15px 0;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--glass-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 11, 16, 0.9);
+    }
 
-        /* --- Main Featured App Card --- */
-        .app-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 25px;
-            margin: 20px auto;
-            width: 85%;
-            max-width: 400px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            position: relative;
-            overflow: hidden;
-        }
+    .logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      background: linear-gradient(to right, #fff, var(--primary-glow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        .hero-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            text-align: center;
-        }
+    /* --- Main Featured App Card --- */
+    .app-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 25px;
+      margin: 20px auto;
+      width: 85%;
+      max-width: 400px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+    }
 
-        .app-icon {
-            width: 100px; /* Adjusted for mobile */
-            height: 100px;
-            background: linear-gradient(135deg, #00d4ff 0%, #0055ff 100%);
-            border-radius: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 45px;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-        }
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
 
-        .app-meta h1 { 
-            font-size: 28px; 
-            margin: 5px 0; 
-        }
+    .app-icon {
+      width: 100px; /* Adjusted for mobile */
+      height: 100px;
+      background: linear-gradient(135deg, #00d4ff 0%, #0055ff 100%);
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 45px;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    }
 
-        .trusted-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(39, 174, 96, 0.2);
-            color: #2ecc71;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            margin-top: 5px;
-        }
+    .app-meta h1 {
+      font-size: 28px;
+      margin: 5px 0;
+    }
 
-        /* Stats Strip - Grid for Mobile */
-        .stats-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            border-top: 1px solid var(--glass-border);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 15px 0;
-            margin-bottom: 25px;
-        }
+    .trusted-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(39, 174, 96, 0.2);
+      color: #2ecc71;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-top: 5px;
+    }
 
-        .stat-box { text-align: center; }
-        .stat-value { display: block; font-size: 18px; font-weight: 700; }
-        .stat-label { font-size: 10px; color: #888; text-transform: uppercase; }
+    /* ✅ Stats Strip - FORCE 2 rows on phones (2 items per row) */
+    .stats-container {
+      display: flex;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 15px 0;
+      margin-bottom: 25px;
+    }
 
-        .download-trigger {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
-            background: linear-gradient(90deg, #FF6E4A 0%, #FF4500 100%);
-            color: white;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            transition: transform 0.2s;
-            width: 100%;
-            box-sizing: border-box;
-        }
+    /* ✅ 2 per row on mobile */
+    .stat-box {
+      width: 50%;
+      text-align: center;
+      padding: 6px 0;
+      box-sizing: border-box;
+    }
 
-        /* --- More Apps Section --- */
-        .more-apps-container {
-            width: 90%;
-            margin-top: 10px;
-        }
+    .stat-value {
+      display: block;
+      font-size: 18px;
+      font-weight: 700;
+    }
 
-        .section-title {
-            font-size: 18px;
-            margin-bottom: 15px;
-            border-left: 3px solid var(--primary-glow);
-            padding-left: 12px;
-            font-weight: 600;
-        }
+    .stat-label {
+      font-size: 10px;
+      color: #888;
+      text-transform: uppercase;
+    }
 
-        /* Grid Layout: 2 Columns on Mobile */
-        .apps-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
+    /* Optional: 4 in a row on bigger phones/tablets */
+    @media (min-width: 480px) {
+      .stat-box {
+        width: 25%;
+      }
+    }
 
-        .mini-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 15px 10px;
-            text-align: center;
-        }
+    .download-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      background: linear-gradient(90deg, #FF6E4A 0%, #FF4500 100%);
+      color: white;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      transition: transform 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+    }
 
-        .mini-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            margin: 0 auto 10px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: white;
-        }
+    /* --- More Apps Section --- */
+    .more-apps-container {
+      width: 90%;
+      margin-top: 10px;
+    }
 
-        /* Gradients */
-        .g-1 { background: linear-gradient(135deg, #FF9A9E, #FECFEF); }
-        .g-2 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
-        .g-3 { background: linear-gradient(135deg, #84fab0, #8fd3f4); }
-        .g-4 { background: linear-gradient(135deg, #fccb90, #d57eeb); }
-        .g-5 { background: linear-gradient(135deg, #e0c3fc, #8ec5fc); }
-        .g-6 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .section-title {
+      font-size: 18px;
+      margin-bottom: 15px;
+      border-left: 3px solid var(--primary-glow);
+      padding-left: 12px;
+      font-weight: 600;
+    }
 
-        .mini-name {
-            font-size: 14px;
-            font-weight: 600;
-            display: block;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    /* Grid Layout: 2 Columns on Mobile */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
 
-        .mini-cat {
-            font-size: 11px;
-            color: #888;
-            margin-bottom: 10px;
-            display: block;
-        }
+    .mini-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 15px 10px;
+      text-align: center;
+    }
 
-        .mini-btn {
-            background: rgba(0, 212, 255, 0.1);
-            color: var(--primary-glow);
-            border: 1px solid var(--primary-glow);
-            padding: 6px 0;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: bold;
-            text-decoration: none;
-            display: block;
-            width: 80%;
-            margin: 0 auto;
-        }
-    </style>
+    .mini-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      margin: 0 auto 10px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: white;
+    }
+
+    /* Gradients */
+    .g-1 { background: linear-gradient(135deg, #FF9A9E, #FECFEF); }
+    .g-2 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+    .g-3 { background: linear-gradient(135deg, #84fab0, #8fd3f4); }
+    .g-4 { background: linear-gradient(135deg, #fccb90, #d57eeb); }
+    .g-5 { background: linear-gradient(135deg, #e0c3fc, #8ec5fc); }
+    .g-6 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+
+    .mini-name {
+      font-size: 14px;
+      font-weight: 600;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mini-cat {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .mini-btn {
+      background: rgba(0, 212, 255, 0.1);
+      color: var(--primary-glow);
+      border: 1px solid var(--primary-glow);
+      padding: 6px 0;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: bold;
+      text-decoration: none;
+      display: block;
+      width: 80%;
+      margin: 0 auto;
+    }
+  </style>
 </head>
+
 <body>
+  <header>
+    <div class="logo-text">East African App Store</div>
+  </header>
 
-    <header>
-        <div class="logo-text">East African App Store</div>
-    </header>
+  <div class="app-card">
+    <div class="hero-section">
+      <div class="app-icon">
+        <i class="fas fa-brain"></i>
+      </div>
 
-    <div class="app-card">
-        <div class="hero-section">
-            <div class="app-icon">
-                <i class="fas fa-brain"></i>
-            </div>
-            <div class="app-meta">
-                <h1>Tigrina AI</h1>
-                <p style="color: #888; margin: 0; font-size: 14px;">Tigrina Global Systems</p>
-                <div class="trusted-badge">
-                    <i class="fas fa-shield-alt"></i> Trusted & Verified
-                </div>
-            </div>
+      <div class="app-meta">
+        <h1>Tigrina AI</h1>
+        <p style="color: #888; margin: 0; font-size: 14px;">Tigrina Global Systems</p>
+        <div class="trusted-badge">
+          <i class="fas fa-shield-alt"></i> Trusted &amp; Verified
         </div>
-
-        <div class="stats-container">
-            <div class="stat-box">
-                <span class="stat-value">1M+</span>
-                <span class="stat-label">Downloads</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-value">4.9 <i class="fas fa-star" style="color: gold; font-size: 12px;"></i></span>
-                <span class="stat-label">Rating</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-value">8.2MB</span>
-                <span class="stat-label">Size</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-value">v2.4</span>
-                <span class="stat-label">Version</span>
-            </div>
-        </div>
-
-        <a href="#" class="download-trigger">
-            <i class="fas fa-download"></i>
-            <span>Download APP</span>
-        </a>
+      </div>
     </div>
 
-    <div class="more-apps-container">
-        <div class="section-title">Similar Applications</div>
-        
-        <div class="apps-grid">
-            <div class="mini-card">
-                <div class="mini-icon g-1"><i class="fas fa-camera"></i></div>
-                <span class="mini-name">Snapchat ++</span>
-                <span class="mini-cat">Photography</span>
-                <a href="#" class="mini-btn">GET</a>
-            </div>
+    <div class="stats-container">
+      <div class="stat-box">
+        <span class="stat-value">1M+</span>
+        <span class="stat-label">Downloads</span>
+      </div>
 
-            <div class="mini-card">
-                <div class="mini-icon g-2"><i class="fas fa-gamepad"></i></div>
-                <span class="mini-name">Wifi Scanner</span>
-                <span class="mini-cat">Games</span>
-                <a href="#" class="mini-btn">GET</a>
-            </div>
+      <div class="stat-box">
+        <span class="stat-value">4.9 <i class="fas fa-star" style="color: gold; font-size: 12px;"></i></span>
+        <span class="stat-label">Rating</span>
+      </div>
 
-            <div class="mini-card">
-                <div class="mini-icon g-3"><i class="fas fa-music"></i></div>
-                <span class="mini-name">Spotify ++</span>
-                <span class="mini-cat">Music</span>
-                <a href="#" class="mini-btn">GET</a>
-            </div>
+      <div class="stat-box">
+        <span class="stat-value">8.2MB</span>
+        <span class="stat-label">Size</span>
+      </div>
 
-            <div class="mini-card">
-                <div class="mini-icon g-4"><i class="fas fa-comments"></i></div>
-                <span class="mini-name">Chatty</span>
-                <span class="mini-cat">Social</span>
-                <a href="#" class="mini-btn">GET</a>
-            </div>
-            
-            <div class="mini-card">
-                <div class="mini-icon g-5"><i class="fas fa-shield-virus"></i></div>
-                <span class="mini-name">Guard AI</span>
-                <span class="mini-cat">Security</span>
-                <a href="#" class="mini-btn">GET</a>
-            </div>
-
-            <div class="mini-card">
-                <div class="mini-icon g-6"><i class="fas fa-tv"></i></div>
-                <span class="mini-name">Stream</span>
-                <span class="mini-cat">Entertainment</span>
-                <a href="#" class="mini-btn">GET</a>
-            </div>
-        </div>
+      <div class="stat-box">
+        <span class="stat-value">v2.4</span>
+        <span class="stat-label">Version</span>
+      </div>
     </div>
 
+    <a href="#" class="download-trigger">
+      <i class="fas fa-download"></i>
+      <span>Download APP</span>
+    </a>
+  </div>
+
+  <div class="more-apps-container">
+    <div class="section-title">Similar Applications</div>
+
+    <div class="apps-grid">
+      <div class="mini-card">
+        <div class="mini-icon g-1"><i class="fas fa-camera"></i></div>
+        <span class="mini-name">Snapchat ++</span>
+        <span class="mini-cat">Photography</span>
+        <a href="#" class="mini-btn">GET</a>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-icon g-2"><i class="fas fa-gamepad"></i></div>
+        <span class="mini-name">Wifi Scanner</span>
+        <span class="mini-cat">Games</span>
+        <a href="#" class="mini-btn">GET</a>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-icon g-3"><i class="fas fa-music"></i></div>
+        <span class="mini-name">Spotify ++</span>
+        <span class="mini-cat">Music</span>
+        <a href="#" class="mini-btn">GET</a>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-icon g-4"><i class="fas fa-comments"></i></div>
+        <span class="mini-name">Chatty</span>
+        <span class="mini-cat">Social</span>
+        <a href="#" class="mini-btn">GET</a>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-icon g-5"><i class="fas fa-shield-virus"></i></div>
+        <span class="mini-name">Guard AI</span>
+        <span class="mini-cat">Security</span>
+        <a href="#" class="mini-btn">GET</a>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-icon g-6"><i class="fas fa-tv"></i></div>
+        <span class="mini-name">Stream</span>
+        <span class="mini-cat">Entertainment</span>
+        <a href="#" class="mini-btn">GET</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
